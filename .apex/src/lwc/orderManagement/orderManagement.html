@@ -1,0 +1,44 @@
+<template>
+    <div>
+        <h1>Order Management</h1>
+        <h2>Account Name: {accountName}</h2>
+        <h2>Account Number: {accountNumber}</h2>
+
+        <div class="filters">
+            <lightning-combobox
+                    label="Type"
+                    options={typeOptions}
+                    value={selectedType}
+                    onchange={handleTypeChange}>
+            </lightning-combobox>
+            <lightning-combobox
+                    label="Family"
+                    options={familyOptions}
+                    value={selectedFamily}
+                    onchange={handleFamilyChange}>
+            </lightning-combobox>
+            <lightning-input
+                    label="Search"
+                    type="text"
+                    value={searchTerm}
+                    onchange={handleSearchChange}>
+            </lightning-input>
+        </div>
+
+        <div class="products">
+            <template if:true={products}>
+                <template for:each={products} for:item="product">
+                    <div key={product.Id} class="product-tile">
+                        <h3>{product.Name}</h3>
+                        <p>{product.Description__c}</p>
+                        <button onclick={handleShowDetails} data-id={product.Id}>Details</button>
+                        <button onclick={handleAddToCart} data-id={product.Id}>Add</button>
+                    </div>
+                </template>
+            </template>
+            <template if:false={products}>
+                <p>No products found.</p>
+            </template>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Create Order">
+        <div class="slds-m-around_medium">
+            <lightning-record-edit-form object-api-name="Order__c" onsuccess={handleSuccess}>
+
+                <lightning-input-field field-name="Name"></lightning-input-field>
+
+                <lightning-input-field field-name="AccountId"></lightning-input-field>
+
+                <lightning-input-field field-name="TotalProductCount"></lightning-input-field>
+
+                <lightning-input-field field-name="TotalPrice"></lightning-input-field>
+
+                <lightning-button variant="brand" type="submit" label="Create Order"></lightning-button>
+            </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+
+    <template if:true={isSuccess}>
+        <lightning-toast message="Order created successfully!" variant="success"></lightning-toast>
+    </template>
+</template>

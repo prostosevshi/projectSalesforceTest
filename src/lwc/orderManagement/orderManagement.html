@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Order Management">
+        <div class="slds-p-around_medium">
+
+            <lightning-input type="text" label="Account Name" value={accountName} disabled></lightning-input>
+            <lightning-input type="text" label="Account Number" value={accountNumber} disabled></lightning-input>
+
+            <div class="slds-grid slds-m-top_medium">
+                <div class="slds-col slds-size_1-of-4">
+                    <lightning-combobox
+                            name="typeFilter"
+                            label="Filter by Type"
+                            options={typeOptions}
+                            value={selectedType}
+                            onchange={handleTypeChange}>
+                    </lightning-combobox>
+                    <lightning-combobox
+                            name="familyFilter"
+                            label="Filter by Family"
+                            options={familyOptions}
+                            value={selectedFamily}
+                            onchange={handleFamilyChange}>
+                    </lightning-combobox>
+                </div>
+
+                <div class="slds-col slds-size_3-of-4">
+                    <lightning-input type="text" label="Search" value={searchTerm} onchange={handleSearchChange}></lightning-input>
+                </div>
+            </div>
+
+            <div class="slds-grid slds-wrap slds-m-top_medium">
+                <template for:each={products} for:item="product">
+                    <div key={product.Id} class="slds-col slds-size_1-of-3 slds-p-around_small">
+                        <lightning-card title={product.Name}>
+                            <p>{product.Description}</p>
+                            <lightning-button label="Details" variant="brand" onclick={handleShowDetails}></lightning-button>
+                            <lightning-button label="Add" variant="success" onclick={handleAddToCart}></lightning-button>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>
